@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MARON Admin Panel | Full Site Control</title>
+    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <header class="admin-header">
+        <div class="admin-nav-container">
+            <div class="admin-brand">
+                <i class="fa-solid fa-sliders"></i>
+                <span>MARON ADMIN PANEL</span>
+            </div>
+            <div class="admin-nav-right">
+                <a href="index.html" class="btn-view-site" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i> View Live Site</a>
+                <button id="btn-save-all" class="btn-save-main"><i class="fa-solid fa-floppy-disk"></i> Save All Changes</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="admin-layout">
+        <aside class="admin-sidebar">
+            <button class="tab-btn active" data-tab="hero-tab"><i class="fa-solid fa-house"></i> Hero Section</button>
+            <button class="tab-btn" data-tab="stats-tab"><i class="fa-solid fa-chart-line"></i> Statistics Counter</button>
+            <button class="tab-btn" data-tab="sectors-tab"><i class="fa-solid fa-network-wired"></i> Sectors & Services</button>
+            <button class="tab-btn" data-tab="projects-tab"><i class="fa-solid fa-briefcase"></i> Featured Projects</button>
+            <button class="tab-btn" data-tab="email-tab"><i class="fa-solid fa-envelope"></i> EmailJS & Contact</button>
+        </aside>
+
+        <main class="admin-content">
+            <div id="hero-tab" class="tab-content active">
+                <h2><i class="fa-solid fa-house"></i> Edit Hero Section</h2>
+                <div class="card-box">
+                    <div class="field-group">
+                        <label>Brand Name</label>
+                        <input type="text" id="input-brand-name">
+                    </div>
+                    <div class="field-group">
+                        <label>Hero Tagline</label>
+                        <input type="text" id="input-hero-tagline">
+                    </div>
+                    <div class="field-group">
+                        <label>Hero Main Title</label>
+                        <input type="text" id="input-hero-title">
+                    </div>
+                    <div class="field-group">
+                        <label>Hero Description</label>
+                        <textarea id="input-hero-description" rows="3"></textarea>
+                    </div>
+                    <div class="field-group">
+                        <label>Button Text</label>
+                        <input type="text" id="input-hero-btn">
+                    </div>
+                </div>
+            </div>
+
+            <div id="stats-tab" class="tab-content">
+                <h2><i class="fa-solid fa-chart-line"></i> Live Statistics Counter</h2>
+                <div id="stats-editor-list"></div>
+                <button class="btn-add-item" id="btn-add-stat"><i class="fa-solid fa-plus"></i> Add New Stat Counter</button>
+            </div>
+
+            <div id="sectors-tab" class="tab-content">
+                <h2><i class="fa-solid fa-network-wired"></i> Manage Sectors & Services</h2>
+                <div id="sectors-editor-list"></div>
+                <button class="btn-add-item" id="btn-add-sector"><i class="fa-solid fa-plus"></i> Add New Sector</button>
+            </div>
+
+            <div id="projects-tab" class="tab-content">
+                <h2><i class="fa-solid fa-briefcase"></i> Manage Featured Projects</h2>
+                <div id="projects-editor-list"></div>
+                <button class="btn-add-item" id="btn-add-project"><i class="fa-solid fa-plus"></i> Add New Project</button>
+            </div>
+
+            <div id="email-tab" class="tab-content">
+                <h2><i class="fa-solid fa-envelope"></i> EmailJS & Contact Information</h2>
+                <div class="card-box">
+                    <div class="field-group">
+                        <label>EmailJS Public Key</label>
+                        <input type="text" id="input-emailjs-key" placeholder="e.g. user_xxxxxxxxxxxx">
+                    </div>
+                    <div class="field-group">
+                        <label>EmailJS Service ID</label>
+                        <input type="text" id="input-emailjs-service" placeholder="e.g. service_xxxxxxx">
+                    </div>
+                    <div class="field-group">
+                        <label>EmailJS Template ID</label>
+                        <input type="text" id="input-emailjs-template" placeholder="e.g. template_xxxxxxx">
+                    </div>
+                    <hr style="border: 0; border-top: 1px solid var(--admin-border); margin: 20px 0;">
+                    <div class="field-group">
+                        <label>Contact Email Displayed</label>
+                        <input type="text" id="input-contact-email">
+                    </div>
+                    <div class="field-group">
+                        <label>Contact Phone Displayed</label>
+                        <input type="text" id="input-contact-phone">
+                    </div>
+                    <div class="field-group">
+                        <label>Contact Address Displayed</label>
+                        <input type="text" id="input-contact-address">
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="content-data.js"></script>
+    <script src="admin.js"></script>
+</body>
+</html>

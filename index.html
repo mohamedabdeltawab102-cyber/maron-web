@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MARON Geomatics | Spatial Solutions & LiDAR Mapping</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Header / Navigation -->
+    <header class="main-header">
+        <div class="container nav-container">
+            <a href="#" class="brand-logo" id="site-brand">MARON</a>
+            <nav class="nav-menu">
+                <a href="#hero">Home</a>
+                <a href="#sectors">Sectors</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+                <a href="admin.html" class="btn-admin-link" target="_blank"><i class="fa-solid fa-gear"></i> Admin</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <span class="hero-tagline" id="hero-tagline">SECTORS WE SERVE</span>
+            <h1 class="hero-title" id="hero-title">Tailored Spatial Solutions for Key Industries</h1>
+            <p class="hero-description" id="hero-description">Empowering decision-makers across critical development and industrial sectors with high-density point clouds, LiDAR precision, and UAV drone mapping in MEA.</p>
+            <a href="#sectors" class="btn-primary" id="hero-btn">Explore Solutions</a>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container stats-grid" id="stats-container">
+            <!-- Rendered dynamically from content-data.js -->
+        </div>
+    </section>
+
+    <!-- Sectors & Services Section -->
+    <section id="sectors" class="sectors-section">
+        <div class="container">
+            <div class="section-title-box">
+                <h2>Key Sectors We Serve</h2>
+                <p>Comprehensive geospatial engineering for complex infrastructure and surveying projects.</p>
+            </div>
+            <div class="sectors-grid" id="sectors-container">
+                <!-- Rendered dynamically from content-data.js -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Projects Section -->
+    <section id="projects" class="projects-section">
+        <div class="container">
+            <div class="section-title-box">
+                <h2>Featured Projects</h2>
+                <p>Delivering high-precision surveys across major regional developments.</p>
+            </div>
+            <div class="projects-grid" id="projects-container">
+                <!-- Rendered dynamically from content-data.js -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container contact-grid">
+            <div class="contact-info">
+                <h2>Get In Touch</h2>
+                <p>Have a project in mind or need tailored spatial engineering solutions? Reach out to our technical team.</p>
+                <div class="info-list">
+                    <div class="info-item">
+                        <i class="fa-solid fa-envelope"></i>
+                        <span id="contact-email">info@marongeomatics.com</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fa-solid fa-phone"></i>
+                        <span id="contact-phone">+20 100 000 0000</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <span id="contact-address">Cairo, Egypt / MEA Region</span>
+                    </div>
+                </div>
+            </div>
+            <form class="contact-form" id="main-contact-form">
+                <div class="form-group">
+                    <input type="text" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" placeholder="Your Email" required>
+                </div>
+                <div class="form-group">
+                    <textarea placeholder="Project Details or Inquiry..." rows="4" required></textarea>
+                </div>
+                <button type="submit" class="btn-primary">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; <span id="year"></span> <span id="footer-brand">MARON</span> Geomatics. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="content-data.js"></script>
+    <script>
+        // Main Site Rendering Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const data = getSiteData();
+            
+            // Brand & Hero
+            document.getElementById('site-brand').textContent = data.brandName;
+            document.getElementById('footer-brand').textContent = data.brandName;
+            document.getElementById('hero-tagline').textContent = data.hero.tagline;
+            document.getElementById('hero-title').textContent = data.hero.title;
+            document.getElementById('hero-description').textContent = data.hero.description;
+            document.getElementById('hero-btn').textContent = data.hero.buttonText;
+            document.getElementById('year').textContent = new Date().getFullYear();
+
+            // Stats
+            const statsContainer = document.getElementById('stats-container');
+            statsContainer.innerHTML = data.stats.map(s => `
+                <div class="stat-card">
+                    <h3>${s.value}</h3>
+                    <p>${s.label}</p>
+                </div>
+            `).join('');
+
+            // Sectors
+            const sectorsContainer = document.getElementById('sectors-container');
+            sectorsContainer.innerHTML = data.sectors.map(s => `
+                <div class="sector-card">
+                    <div class="sector-img" style="background-image: url('${s.image || 'https://via.placeholder.com/600x400'}');"></div>
+                    <div class="sector-content">
+                        <h3>${s.title}</h3>
+                        <p>${s.description}</p>
+                    </div>
+                </div>
+            `).join('');
+
+            // Projects
+            const projectsContainer = document.getElementById('projects-container');
+            projectsContainer.innerHTML = data.projects.map(p => `
+                <div class="project-card">
+                    <div class="project-img" style="background-image: url('${p.image || 'https://via.placeholder.com/600x400'}');"></div>
+                    <div class="project-content">
+                        <span class="project-cat">${p.category}</span>
+                        <h3>${p.title}</h3>
+                        <p>${p.description}</p>
+                    </div>
+                </div>
+            `).join('');
+
+            // Contact Info
+            document.getElementById('contact-email').textContent = data.contact.email;
+            document.getElementById('contact-phone').textContent = data.contact.phone;
+            document.getElementById('contact-address').textContent = data.contact.address;
+        });
+    </script>
+</body>
+</html>

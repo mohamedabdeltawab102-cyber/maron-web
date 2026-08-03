@@ -1,0 +1,170 @@
+:root {
+    --admin-bg: #f8fafc;
+    --admin-sidebar: #0f172a;
+    --admin-card: #ffffff;
+    --admin-border: #e2e8f0;
+    --admin-orange: #f26522;
+    --admin-text: #1e293b;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+body {
+    background-color: var(--admin-bg);
+    color: var(--admin-text);
+}
+
+.admin-header {
+    background: var(--admin-sidebar);
+    color: #fff;
+    padding: 15px 30px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.admin-nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.admin-brand {
+    font-size: 1.2rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--admin-orange);
+}
+
+.admin-nav-right {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.btn-view-site {
+    color: #94a3b8;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.btn-save-main {
+    background: var(--admin-orange);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.admin-layout {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    min-height: calc(100vh - 60px);
+}
+
+.admin-sidebar {
+    background: var(--admin-sidebar);
+    padding: 20px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.tab-btn {
+    background: transparent;
+    border: none;
+    color: #94a3b8;
+    padding: 12px 18px;
+    text-align: left;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.tab-btn.active, .tab-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+.admin-content {
+    padding: 40px;
+    max-width: 900px;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.tab-content h2 {
+    margin-bottom: 25px;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.card-box {
+    background: var(--admin-card);
+    border: 1px solid var(--admin-border);
+    border-radius: 8px;
+    padding: 25px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.field-group {
+    margin-bottom: 18px;
+}
+
+.field-group label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #64748b;
+}
+
+.field-group input, .field-group textarea, .field-group select {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid var(--admin-border);
+    border-radius: 6px;
+    font-size: 0.95rem;
+}
+
+.btn-add-item {
+    background: #0f172a;
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.btn-remove {
+    background: #ef4444;
+    color: #fff;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    margin-top: 10px;
+}
