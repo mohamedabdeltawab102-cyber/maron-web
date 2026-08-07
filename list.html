@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MARON</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+
+<header id="header" class="scrolled">
+  <div class="wrap navbar">
+    <a href="index.html" class="logo">
+      <span class="logo-mark"><svg viewBox="0 0 30 30" fill="none" stroke="#E85D25" stroke-width="1.8"><circle cx="15" cy="15" r="12"/><path d="M15 3v24M3 15h24"/><circle cx="15" cy="15" r="2.2" fill="#E85D25" stroke="none"/></svg></span>
+      MARON
+    </a>
+    <nav class="nav-links">
+      <div class="nav-item"><a href="index.html">Home</a></div>
+      <div class="nav-item"><a href="list.html?type=services">Services</a></div>
+      <div class="nav-item"><a href="list.html?type=industries">Industries</a></div>
+      <div class="nav-item"><a href="list.html?type=projects">Projects</a></div>
+    </nav>
+    <div class="nav-cta"><a href="index.html#quote" class="btn btn-ghost">Get a Quote</a></div>
+  </div>
+</header>
+
+<section class="list-hero">
+  <div class="wrap">
+    <div class="eyebrow" style="color:#F4915C" id="list-eyebrow">MARON</div>
+    <h1 id="list-title">Services</h1>
+    <p id="list-desc"></p>
+  </div>
+</section>
+
+<section style="padding-top:0;">
+  <div class="wrap">
+    <div class="list-filters" id="list-filters"></div>
+    <div class="grid-3" id="list-grid"></div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="footer-bottom" style="padding-top:0;border-top:none;">
+      <span data-footer-copyright>© 2026 MARON. All rights reserved.</span>
+      <span><a href="index.html">Back to Home</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="content-data.js"></script>
+<script src="icons.js"></script>
+<script>
+  function escapeHtml(str) {
+    const div = document.createElement("div");
+    div.textContent = str ?? "";
+    return div.innerHTML;
+  }
+
+  const SERVICE_CATEGORY_LABELS = { land: "Land & Engineering", aerial: "UAV & Photogrammetry", "3d": "LiDAR & 3D Scanning", gis: "GIS & Volumes" };
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const content = maronGetContent();
+    document.querySelector("[data-footer-copyright]").textContent = content.footer.copyright;
+    const params = new URLSearchParams(window.location.search);
+    const type = params.get("type") || "services";
+
+    if (type === "services") renderServicesList(content);
+    else if (type === "industries") renderIndustriesList(content);
+    else if (type === "projects") renderProjectsList(content);
+    else renderServicesList(content);
+  });
+
+  function renderServicesList(content) {
+    document.title = "Services | MARON";
+    document.getElementById("list-eyebrow").textContent = "What We Do";
+    document.getElementById("list-title").textContent = "All Services";
+    document.getElementById("list-desc").textContent = "End-to-end geospatial and digital engineering capability, from field data capture to finished deliverable.";
+
+    const filtersWrap = document.getElementById("list-filters");
+    const grid = document.getElementById("list-grid");
+    const categories = ["all", ...new Set(content.services.map(s => s.category))];
+
+    filtersWrap.innerHTML = categories
+      .map(cat => `<button data-cat="${cat}" class="${cat === "all" ? "active" : ""}">${cat === "all" ? "All Services" : (SERVICE_CATEGORY_LABELS[cat] || cat)}</button>`)
+      .join("");
+
+    function render(cat) {
+      const items = cat === "all" ? content.services : content.services.filter(s => s.category === cat);
+      grid.innerHTML = items
+        .map(s => `
+        <a class="card reveal in" href="service.html?slug=${encodeURIComponent(maronSlugify(s.title))}">
+          <div class="icon-wrap">${MARON_ICONS[s.icon] || ""}</div>
+          <h3>${escapeHtml(s.title)}</h3>
+          <p>${escapeHtml(s.desc)}</p>
+          <span class="go">Learn more →</span>
+        </a>`)
+        .join("");
+    }
+
+    filtersWrap.querySelectorAll("button").forEach(btn => {
+      btn.addEventListener("click", () => {
+        filtersWrap.querySelectorAll("button").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        render(btn.dataset.cat);
+      });
+    });
+
+    render("all");
+  }
+
+  function renderIndustriesList(content) {
+    document.title = "Industries | MARON";
+    document.getElementById("list-eyebrow").textContent = "Sectors We Serve";
+    document.getElementById("list-title").textContent = "All Industries";
+    document.getElementById("list-desc").textContent = "Purpose-built survey and geospatial workflows for the sectors that shape the region's growth.";
+    document.getElementById("list-filters").style.display = "none";
+
+    document.getElementById("list-grid").innerHTML = content.industries
+      .map(ind => `
+      <div class="card reveal in">
+        ${ind.imageDataUrl ? `<img src="${ind.imageDataUrl}" alt="${escapeHtml(ind.title)}" style="width:100%;height:160px;object-fit:cover;border-radius:10px;margin-bottom:18px;">` : ""}
+        <h3>${escapeHtml(ind.title)}</h3>
+        <p>${escapeHtml(ind.desc)}</p>
+      </div>`)
+      .join("");
+  }
+
+  function renderProjectsList(content) {
+    document.title = "Projects | MARON";
+    document.getElementById("list-eyebrow").textContent = "Our Work";
+    document.getElementById("list-title").textContent = content.projects.title || "Featured Projects";
+    document.getElementById("list-desc").textContent = content.projects.description || "";
+    document.getElementById("list-filters").style.display = "none";
+
+    document.getElementById("list-grid").innerHTML = content.projects.items
+      .map(p => `
+      <div class="proj-card reveal in">
+        <div class="proj-media">
+          <span class="proj-tag">${escapeHtml(p.category)}</span>
+          ${p.imageDataUrl ? `<img src="${p.imageDataUrl}" alt="${escapeHtml(p.title)}">` : `<div style="width:100%;height:100%;background:linear-gradient(135deg,var(--navy-800),var(--navy-950));"></div>`}
+        </div>
+        <div class="proj-body"><h3>${escapeHtml(p.title)}</h3><p>${escapeHtml(p.description)}</p></div>
+      </div>`)
+      .join("");
+  }
+</script>
+</body>
+</html>

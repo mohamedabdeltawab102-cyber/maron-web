@@ -1,169 +1,249 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MARON Geomatics | Spatial Solutions & LiDAR Mapping</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MARON | Advanced Surveying &amp; Digital Engineering Solutions</title>
+<meta name="description" content="MARON delivers land survey, 3D laser scanning, mobile mapping, drone survey, GIS and BIM services across Egypt and Saudi Arabia.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
 </head>
 <body>
 
-    <!-- Header / Navigation -->
-    <header class="main-header">
-        <div class="container nav-container">
-            <a href="#" class="brand-logo" id="site-brand">MARON</a>
-            <nav class="nav-menu">
-                <a href="#hero">Home</a>
-                <a href="#sectors">Sectors</a>
-                <a href="#projects">Projects</a>
-                <a href="#contact">Contact</a>
-                <a href="admin.html" class="btn-admin-link" target="_blank"><i class="fa-solid fa-gear"></i> Admin</a>
-            </nav>
+<!-- ICON SPRITE -->
+<svg style="display:none">
+  <symbol id="ic-land" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 20l6-13 4 8 3-5 5 10H3z"/><circle cx="9" cy="7" r="1.3"/></symbol>
+  <symbol id="ic-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12l6 6L20 6"/></symbol>
+  <symbol id="ic-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="ic-gnss" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2v6M12 2l-3 3M12 2l3 3"/><circle cx="12" cy="15" r="6"/><circle cx="12" cy="15" r="1.4"/></symbol>
+  <symbol id="ic-total" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 20h12M9 20V10l3-6 3 6v10"/></symbol>
+</svg>
+
+<!-- HEADER -->
+<header id="header">
+  <div class="wrap navbar">
+    <a href="#" class="logo">
+      <span class="logo-mark"><svg viewBox="0 0 30 30" fill="none" stroke="#E85D25" stroke-width="1.8"><circle cx="15" cy="15" r="12"/><path d="M15 3v24M3 15h24"/><circle cx="15" cy="15" r="2.2" fill="#E85D25" stroke="none"/></svg></span>
+      <span data-brand-name>MARON</span>
+    </a>
+    <nav class="nav-links">
+      <div class="nav-item"><a href="#home">Home</a></div>
+      <div class="nav-item"><a href="list.html?type=services">Services</a></div>
+      <div class="nav-item"><a href="list.html?type=industries">Industries</a></div>
+      <div class="nav-item"><a href="list.html?type=projects">Projects</a></div>
+      <div class="nav-item"><a href="#equipment">Equipment</a></div>
+      <div class="nav-item"><a href="#contact">Contact</a></div>
+    </nav>
+    <div class="nav-cta">
+      <a href="#quote" class="btn btn-ghost">Get a Quote</a>
+      <button class="burger" id="burgerBtn" aria-label="Open menu">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- MOBILE PANEL -->
+<div class="mobile-panel" id="mobilePanel">
+  <div class="mp-top">
+    <span class="logo" style="color:#fff">MARON</span>
+    <button class="mp-close" id="mpClose"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </div>
+  <a href="#home">Home</a><a href="list.html?type=services">Services</a><a href="list.html?type=projects">Projects</a>
+  <a href="#equipment">Equipment</a><a href="list.html?type=industries">Industries</a><a href="#contact">Contact</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="home" style="padding:0;background:linear-gradient(180deg, rgba(8,21,33,.55) 0%, rgba(8,21,33,.55) 40%, rgba(8,21,33,.92) 100%), url('https://images.unsplash.com/photo-1508450859948-4e04fabaa4ea?q=80&w=2000&auto=format&fit=crop') center/cover no-repeat;">
+  <div class="wrap hero-inner">
+    <div class="hero-content reveal in">
+      <div class="eyebrow" style="color:#F4915C">Geomatics &middot; Reality Capture</div>
+      <h1 data-hero-title>Engineering Data for Better Decisions</h1>
+      <p class="sub" data-hero-desc>Delivering integrated geomatics, surveying, and digital reality capture solutions across Egypt and the Middle East.</p>
+      <div class="hero-actions">
+        <a href="#services-3d" class="btn btn-primary" data-hero-cta-primary>Explore Services <svg width="16" height="16" viewBox="0 0 24 24"><use href="#ic-arrow"/></svg></a>
+        <a href="#quote" class="btn btn-ghost" data-hero-cta-secondary>Request a Quote</a>
+      </div>
+    </div>
+    <div class="wrap" style="padding:0;margin:0 -32px;">
+      <div class="coord-bar wrap">
+        <span><span class="dot">●</span> <span data-hud-lat>30.0444° N</span></span>
+        <span>ACCURACY: <span data-hud-accuracy>±0.002 m</span></span>
+        <span data-hero-badge>Integrated Geospatial Intelligence</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT (condensed) -->
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <div class="about-media reveal">
+      <img src="https://images.unsplash.com/photo-1581093458791-9d42e3c5d7f5?q=80&w=1200&auto=format&fit=crop" alt="Surveyor operating a total station on site">
+    </div>
+    <div class="about-copy reveal">
+      <div class="eyebrow">About MARON</div>
+      <h2 data-about-title style="font-size:clamp(26px,3vw,36px);margin-bottom:22px;">Precision Geomatics &amp; Engineering Excellence</h2>
+      <p data-about-p1>MARON is a leading geomatics and surveying company providing integrated geospatial solutions.</p>
+      <ul class="about-list" data-about-list></ul>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats">
+  <div class="wrap stats-grid" data-stats-grid></div>
+</section>
+
+<!-- SERVICES — 3D CAROUSEL -->
+<section class="services-section" id="services-3d">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2>Our Core Services</h2>
+      <p>Drag to explore — tap a shape or its caption to see the full service page.</p>
+    </div>
+    <div class="services-3d-wrap reveal">
+      <div class="services-3d-canvas" id="services-3d-canvas"></div>
+      <div class="services-3d-hint">Drag to rotate</div>
+      <div class="services-3d-caption" id="services-3d-caption">
+        <h3 data-cap-title></h3>
+        <p data-cap-desc></p>
+      </div>
+      <div class="grid-4 services-3d-fallback" id="services-3d-fallback"></div>
+    </div>
+    <div class="services-3d-nav" id="services-3d-dots"></div>
+    <div class="section-viewall"><a href="list.html?type=services" class="btn btn-dark">View All Services</a></div>
+  </div>
+</section>
+
+<!-- INDUSTRIES (condensed) -->
+<section id="industries">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2>Industries We Serve</h2>
+      <p>Purpose-built survey and geospatial workflows for the sectors that shape the region's growth.</p>
+    </div>
+    <div class="ind-grid" data-industries-grid style="grid-template-columns:repeat(3,1fr);"></div>
+    <div class="section-viewall"><a href="list.html?type=industries" class="btn btn-dark">View All Industries</a></div>
+  </div>
+</section>
+
+<!-- PROJECTS (condensed) -->
+<section class="services-section" id="projects">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2>Featured Projects</h2>
+      <p>A selection of recent survey and digital engineering work across the region.</p>
+    </div>
+    <div class="grid-3" data-projects-grid></div>
+    <div class="section-viewall"><a href="list.html?type=projects" class="btn btn-dark">View All Projects</a></div>
+  </div>
+</section>
+
+<!-- EQUIPMENT (condensed) -->
+<section class="equip-section" id="equipment">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2>Equipment</h2>
+      <p>Survey-grade instruments and processing software behind every deliverable.</p>
+    </div>
+    <div class="grid-4" data-equipment-grid></div>
+  </div>
+</section>
+
+<!-- CLIENTS -->
+<section class="clients-strip">
+  <div class="wrap">
+    <div class="eyebrow reveal">Trusted By</div>
+    <div class="clients-row reveal" data-clients-row></div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS (condensed) -->
+<section>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2>What Clients Say</h2>
+    </div>
+    <div class="grid-3" data-testimonials-grid></div>
+  </div>
+</section>
+
+<!-- QUOTE / CONTACT -->
+<section class="quote-section" id="quote">
+  <div class="wrap" style="max-width:640px;">
+    <div class="section-head reveal" style="display:block;">
+      <h2 data-cta-title>Get a Tailored Project Quote</h2>
+      <p>Tell us about your project and we'll get back to you within 48 hours.</p>
+    </div>
+    <div class="quote-form-card reveal">
+      <form id="quote-form" novalidate>
+        <div class="form-row">
+          <div class="form-group"><label for="fullname">Full Name</label><input class="form-control" type="text" id="fullname" name="fullname" required></div>
+          <div class="form-group"><label for="company">Company</label><input class="form-control" type="text" id="company" name="company"></div>
         </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section id="hero" class="hero-section">
-        <div class="hero-overlay"></div>
-        <div class="container hero-content">
-            <span class="hero-tagline" id="hero-tagline">SECTORS WE SERVE</span>
-            <h1 class="hero-title" id="hero-title">Tailored Spatial Solutions for Key Industries</h1>
-            <p class="hero-description" id="hero-description">Empowering decision-makers across critical development and industrial sectors with high-density point clouds, LiDAR precision, and UAV drone mapping in MEA.</p>
-            <a href="#sectors" class="btn-primary" id="hero-btn">Explore Solutions</a>
+        <div class="form-row">
+          <div class="form-group"><label for="email">Email</label><input class="form-control" type="email" id="email" name="email" required></div>
+          <div class="form-group"><label for="phone">Phone</label><input class="form-control" type="tel" id="phone" name="phone"></div>
         </div>
-    </section>
+        <div class="form-group"><label for="message">Project Details</label><textarea class="form-control" id="message" name="message" rows="4" required></textarea></div>
+        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Send Request</button>
+        <div class="form-success" id="form-success">Thanks — your request has been received.</div>
+        <div class="form-error" id="form-error">Something went wrong. Please try again or contact us directly.</div>
+      </form>
+    </div>
+  </div>
+</section>
 
-    <!-- Stats Section -->
-    <section class="stats-section">
-        <div class="container stats-grid" id="stats-container">
-            <!-- Rendered dynamically from content-data.js -->
-        </div>
-    </section>
+<!-- FOOTER -->
+<footer id="contact">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="logo"><span class="logo-mark"><svg viewBox="0 0 30 30" fill="none" stroke="#E85D25" stroke-width="1.8"><circle cx="15" cy="15" r="12"/><path d="M15 3v24M3 15h24"/><circle cx="15" cy="15" r="2.2" fill="#E85D25" stroke="none"/></svg></span>MARON</span>
+        <p data-footer-about>MARON delivers integrated geomatics and surveying solutions.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul><li><a href="list.html?type=services">Services</a></li><li><a href="list.html?type=projects">Projects</a></li><li><a href="list.html?type=industries">Industries</a></li></ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul><li><a href="#about">About Us</a></li><li><a href="admin.html">Admin</a></li></ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul class="footer-contact">
+          <li data-footer-address>Cairo, Egypt</li>
+          <li data-footer-phone>+20 100 000 0000</li>
+          <li data-footer-email>info@maron-geo.com</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span data-footer-copyright>© 2026 MARON. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
 
-    <!-- Sectors & Services Section -->
-    <section id="sectors" class="sectors-section">
-        <div class="container">
-            <div class="section-title-box">
-                <h2>Key Sectors We Serve</h2>
-                <p>Comprehensive geospatial engineering for complex infrastructure and surveying projects.</p>
-            </div>
-            <div class="sectors-grid" id="sectors-container">
-                <!-- Rendered dynamically from content-data.js -->
-            </div>
-        </div>
-    </section>
+<button class="totop" id="totop" aria-label="Back to top">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
 
-    <!-- Featured Projects Section -->
-    <section id="projects" class="projects-section">
-        <div class="container">
-            <div class="section-title-box">
-                <h2>Featured Projects</h2>
-                <p>Delivering high-precision surveys across major regional developments.</p>
-            </div>
-            <div class="projects-grid" id="projects-container">
-                <!-- Rendered dynamically from content-data.js -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact-section">
-        <div class="container contact-grid">
-            <div class="contact-info">
-                <h2>Get In Touch</h2>
-                <p>Have a project in mind or need tailored spatial engineering solutions? Reach out to our technical team.</p>
-                <div class="info-list">
-                    <div class="info-item">
-                        <i class="fa-solid fa-envelope"></i>
-                        <span id="contact-email">info@marongeomatics.com</span>
-                    </div>
-                    <div class="info-item">
-                        <i class="fa-solid fa-phone"></i>
-                        <span id="contact-phone">+20 100 000 0000</span>
-                    </div>
-                    <div class="info-item">
-                        <i class="fa-solid fa-location-dot"></i>
-                        <span id="contact-address">Cairo, Egypt / MEA Region</span>
-                    </div>
-                </div>
-            </div>
-            <form class="contact-form" id="main-contact-form">
-                <div class="form-group">
-                    <input type="text" placeholder="Your Name" required>
-                </div>
-                <div class="form-group">
-                    <input type="email" placeholder="Your Email" required>
-                </div>
-                <div class="form-group">
-                    <textarea placeholder="Project Details or Inquiry..." rows="4" required></textarea>
-                </div>
-                <button type="submit" class="btn-primary">Send Message</button>
-            </form>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="main-footer">
-        <div class="container">
-            <p>&copy; <span id="year"></span> <span id="footer-brand">MARON</span> Geomatics. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <script src="content-data.js"></script>
-    <script>
-        // Main Site Rendering Logic
-        document.addEventListener('DOMContentLoaded', () => {
-            const data = getSiteData();
-            
-            // Brand & Hero
-            document.getElementById('site-brand').textContent = data.brandName;
-            document.getElementById('footer-brand').textContent = data.brandName;
-            document.getElementById('hero-tagline').textContent = data.hero.tagline;
-            document.getElementById('hero-title').textContent = data.hero.title;
-            document.getElementById('hero-description').textContent = data.hero.description;
-            document.getElementById('hero-btn').textContent = data.hero.buttonText;
-            document.getElementById('year').textContent = new Date().getFullYear();
-
-            // Stats
-            const statsContainer = document.getElementById('stats-container');
-            statsContainer.innerHTML = data.stats.map(s => `
-                <div class="stat-card">
-                    <h3>${s.value}</h3>
-                    <p>${s.label}</p>
-                </div>
-            `).join('');
-
-            // Sectors
-            const sectorsContainer = document.getElementById('sectors-container');
-            sectorsContainer.innerHTML = data.sectors.map(s => `
-                <div class="sector-card">
-                    <div class="sector-img" style="background-image: url('${s.image || 'https://via.placeholder.com/600x400'}');"></div>
-                    <div class="sector-content">
-                        <h3>${s.title}</h3>
-                        <p>${s.description}</p>
-                    </div>
-                </div>
-            `).join('');
-
-            // Projects
-            const projectsContainer = document.getElementById('projects-container');
-            projectsContainer.innerHTML = data.projects.map(p => `
-                <div class="project-card">
-                    <div class="project-img" style="background-image: url('${p.image || 'https://via.placeholder.com/600x400'}');"></div>
-                    <div class="project-content">
-                        <span class="project-cat">${p.category}</span>
-                        <h3>${p.title}</h3>
-                        <p>${p.description}</p>
-                    </div>
-                </div>
-            `).join('');
-
-            // Contact Info
-            document.getElementById('contact-email').textContent = data.contact.email;
-            document.getElementById('contact-phone').textContent = data.contact.phone;
-            document.getElementById('contact-address').textContent = data.contact.address;
-        });
-    </script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+<script src="content-data.js"></script>
+<script src="icons.js"></script>
+<script src="services-3d.js"></script>
+<script src="app-v2.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const c = maronGetContent();
+    if (c.emailjs.enabled && c.emailjs.publicKey && window.emailjs) {
+      window.emailjs.init({ publicKey: c.emailjs.publicKey });
+    }
+  });
+</script>
 </body>
 </html>

@@ -1,115 +1,339 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MARON Admin Panel | Full Site Control</title>
-    <link rel="stylesheet" href="admin.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MARON — Admin Panel</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="admin.css">
 </head>
 <body>
 
+<!-- ============== LOGIN SCREEN ============== -->
+<div class="login-screen" id="login-screen">
+    <div class="login-card">
+        <div class="brand-symbol">
+            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="50" cy="50" r="44" stroke="#F58220" stroke-width="4" stroke-dasharray="6 4"/>
+                <circle cx="50" cy="50" r="30" stroke="#071D3A" stroke-width="2"/>
+                <circle cx="50" cy="50" r="6" fill="#F58220"/>
+                <line x1="50" y1="0" x2="50" y2="100" stroke="#F58220" stroke-width="2"/>
+                <line x1="0" y1="50" x2="100" y2="50" stroke="#F58220" stroke-width="2"/>
+            </svg>
+        </div>
+        <h1>Admin Access</h1>
+        <p class="sub">Enter the admin password to edit MARON site content.</p>
+        <form id="login-form">
+            <input type="password" id="password-input" placeholder="Password" autocomplete="current-password" required>
+            <div class="login-error" id="login-error"></div>
+            <button type="submit" class="btn btn-primary">Sign In</button>
+        </form>
+        <p class="login-note">
+            This panel protects content editing with a client-side password check stored in this browser only.
+            It is suitable for keeping casual visitors out of editing, but is <strong>not</strong> bank-grade security —
+            don't rely on it alone for highly sensitive data. For stronger protection, add server-side authentication.
+        </p>
+        <a href="index.html" class="back-link">← Back to site</a>
+    </div>
+</div>
+
+<!-- ============== DASHBOARD ============== -->
+<div id="dashboard" style="display:none;">
     <header class="admin-header">
-        <div class="admin-nav-container">
-            <div class="admin-brand">
-                <i class="fa-solid fa-sliders"></i>
-                <span>MARON ADMIN PANEL</span>
+        <div class="left">
+            <div class="brand-symbol">
+                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="44" stroke="#F58220" stroke-width="4" stroke-dasharray="6 4"/>
+                    <circle cx="50" cy="50" r="30" stroke="#FFFFFF" stroke-width="2"/>
+                    <circle cx="50" cy="50" r="6" fill="#F58220"/>
+                    <line x1="50" y1="0" x2="50" y2="100" stroke="#F58220" stroke-width="2"/>
+                    <line x1="0" y1="50" x2="100" y2="50" stroke="#F58220" stroke-width="2"/>
+                </svg>
             </div>
-            <div class="admin-nav-right">
-                <a href="index.html" class="btn-view-site" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i> View Live Site</a>
-                <button id="btn-save-all" class="btn-save-main"><i class="fa-solid fa-floppy-disk"></i> Save All Changes</button>
-            </div>
+            <span class="title">MARON ADMIN</span>
+        </div>
+        <div class="right">
+            <a href="index.html" target="_blank" class="view-site">View Site ↗</a>
+            <button class="btn btn-outline btn-sm" id="logout-btn">Log Out</button>
         </div>
     </header>
 
     <div class="admin-layout">
-        <aside class="admin-sidebar">
-            <button class="tab-btn active" data-tab="hero-tab"><i class="fa-solid fa-house"></i> Hero Section</button>
-            <button class="tab-btn" data-tab="stats-tab"><i class="fa-solid fa-chart-line"></i> Statistics Counter</button>
-            <button class="tab-btn" data-tab="sectors-tab"><i class="fa-solid fa-network-wired"></i> Sectors & Services</button>
-            <button class="tab-btn" data-tab="projects-tab"><i class="fa-solid fa-briefcase"></i> Featured Projects</button>
-            <button class="tab-btn" data-tab="email-tab"><i class="fa-solid fa-envelope"></i> EmailJS & Contact</button>
-        </aside>
+        <nav class="admin-sidebar" id="sidebar">
+            <button data-panel="brand" class="active">Brand & Contact</button>
+            <button data-panel="hero">Hero Section</button>
+            <button data-panel="about">About Section</button>
+            <button data-panel="stats">Stats</button>
+            <button data-panel="services">Services</button>
+            <button data-panel="industries">Industries</button>
+            <button data-panel="projects">Projects</button>
+            <button data-panel="tech">Technology</button>
+            <button data-panel="quote">Quote / CTA</button>
+            <button data-panel="notifications">Email Notifications</button>
+            <button data-panel="footer">Footer</button>
+            <button data-panel="settings">Settings</button>
+        </nav>
 
         <main class="admin-content">
-            <div id="hero-tab" class="tab-content active">
-                <h2><i class="fa-solid fa-house"></i> Edit Hero Section</h2>
-                <div class="card-box">
+
+            <!-- BRAND & CONTACT -->
+            <section class="admin-panel active" id="panel-brand">
+                <div class="panel-head"><h2>Brand & Contact</h2><p>Logo, company name, and contact details shown across the site.</p></div>
+                <div class="card">
                     <div class="field-group">
-                        <label>Brand Name</label>
-                        <input type="text" id="input-brand-name">
+                        <label>Logo</label>
+                        <div class="logo-preview" id="logo-preview"></div>
+                        <input type="file" id="logo-upload" accept="image/*">
+                        <div class="hint">PNG or SVG on a transparent background works best. Leave empty to keep the default emblem. <button type="button" class="btn btn-outline btn-sm" id="logo-remove" style="margin-top:8px;">Remove logo</button></div>
                     </div>
-                    <div class="field-group">
-                        <label>Hero Tagline</label>
-                        <input type="text" id="input-hero-tagline">
-                    </div>
-                    <div class="field-group">
-                        <label>Hero Main Title</label>
-                        <input type="text" id="input-hero-title">
-                    </div>
-                    <div class="field-group">
-                        <label>Hero Description</label>
-                        <textarea id="input-hero-description" rows="3"></textarea>
-                    </div>
-                    <div class="field-group">
-                        <label>Button Text</label>
-                        <input type="text" id="input-hero-btn">
+                    <div class="field-row">
+                        <div class="field-group"><label>Company Name</label><input type="text" data-field="brand.companyName"></div>
+                        <div class="field-group"><label>Tagline</label><input type="text" data-field="brand.tagline"></div>
                     </div>
                 </div>
-            </div>
-
-            <div id="stats-tab" class="tab-content">
-                <h2><i class="fa-solid fa-chart-line"></i> Live Statistics Counter</h2>
-                <div id="stats-editor-list"></div>
-                <button class="btn-add-item" id="btn-add-stat"><i class="fa-solid fa-plus"></i> Add New Stat Counter</button>
-            </div>
-
-            <div id="sectors-tab" class="tab-content">
-                <h2><i class="fa-solid fa-network-wired"></i> Manage Sectors & Services</h2>
-                <div id="sectors-editor-list"></div>
-                <button class="btn-add-item" id="btn-add-sector"><i class="fa-solid fa-plus"></i> Add New Sector</button>
-            </div>
-
-            <div id="projects-tab" class="tab-content">
-                <h2><i class="fa-solid fa-briefcase"></i> Manage Featured Projects</h2>
-                <div id="projects-editor-list"></div>
-                <button class="btn-add-item" id="btn-add-project"><i class="fa-solid fa-plus"></i> Add New Project</button>
-            </div>
-
-            <div id="email-tab" class="tab-content">
-                <h2><i class="fa-solid fa-envelope"></i> EmailJS & Contact Information</h2>
-                <div class="card-box">
-                    <div class="field-group">
-                        <label>EmailJS Public Key</label>
-                        <input type="text" id="input-emailjs-key" placeholder="e.g. user_xxxxxxxxxxxx">
+                <div class="card">
+                    <div class="field-row">
+                        <div class="field-group"><label>Phone</label><input type="text" data-field="brand.phone"></div>
+                        <div class="field-group"><label>WhatsApp Number</label><input type="text" data-field="brand.whatsapp"></div>
                     </div>
-                    <div class="field-group">
-                        <label>EmailJS Service ID</label>
-                        <input type="text" id="input-emailjs-service" placeholder="e.g. service_xxxxxxx">
+                    <div class="field-row">
+                        <div class="field-group"><label>Email</label><input type="email" data-field="brand.email"></div>
+                        <div class="field-group"><label>Address</label><input type="text" data-field="brand.address"></div>
                     </div>
-                    <div class="field-group">
-                        <label>EmailJS Template ID</label>
-                        <input type="text" id="input-emailjs-template" placeholder="e.g. template_xxxxxxx">
-                    </div>
-                    <hr style="border: 0; border-top: 1px solid var(--admin-border); margin: 20px 0;">
-                    <div class="field-group">
-                        <label>Contact Email Displayed</label>
-                        <input type="text" id="input-contact-email">
-                    </div>
-                    <div class="field-group">
-                        <label>Contact Phone Displayed</label>
-                        <input type="text" id="input-contact-phone">
-                    </div>
-                    <div class="field-group">
-                        <label>Contact Address Displayed</label>
-                        <input type="text" id="input-contact-address">
+                    <div class="field-row-3">
+                        <div class="field-group"><label>Facebook URL</label><input type="url" data-field="brand.facebook" placeholder="https://facebook.com/..."></div>
+                        <div class="field-group"><label>LinkedIn URL</label><input type="url" data-field="brand.linkedin" placeholder="https://linkedin.com/..."></div>
+                        <div class="field-group"><label>Instagram URL</label><input type="url" data-field="brand.instagram" placeholder="https://instagram.com/..."></div>
                     </div>
                 </div>
-            </div>
+            </section>
+
+            <!-- HERO -->
+            <section class="admin-panel" id="panel-hero">
+                <div class="panel-head"><h2>Hero Section</h2><p>The first thing visitors see at the top of the homepage.</p></div>
+                <div class="card">
+                    <div class="field-group"><label>Badge Text</label><input type="text" data-field="hero.badgeText"></div>
+                    <div class="field-row">
+                        <div class="field-group"><label>Headline (main)</label><input type="text" data-field="hero.titleMain"></div>
+                        <div class="field-group"><label>Headline (accent color)</label><input type="text" data-field="hero.titleAccent"></div>
+                    </div>
+                    <div class="field-group"><label>Description</label><textarea rows="3" data-field="hero.description"></textarea></div>
+                    <div class="field-row">
+                        <div class="field-group"><label>Primary Button Text</label><input type="text" data-field="hero.ctaPrimary"></div>
+                        <div class="field-group"><label>Secondary Button Text</label><input type="text" data-field="hero.ctaSecondary"></div>
+                    </div>
+                    <div class="field-row-3">
+                        <div class="field-group"><label>GNSS Latitude</label><input type="text" data-field="hero.hudLat"></div>
+                        <div class="field-group"><label>GNSS Longitude</label><input type="text" data-field="hero.hudLon"></div>
+                        <div class="field-group"><label>Survey Accuracy</label><input type="text" data-field="hero.hudAccuracy"></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="field-group">
+                        <label>Background Style</label>
+                        <select id="hero-bg-style" data-field="hero.backgroundStyle">
+                            <option value="animated">Animated scene (drone + radar + point cloud)</option>
+                            <option value="image">Custom uploaded image</option>
+                        </select>
+                        <div class="hint">The animated scene is the recommended default and matches the MARON brand.</div>
+                    </div>
+                    <div class="field-group" id="hero-bg-image-field" style="display:none;">
+                        <label>Background Image</label>
+                        <input type="file" id="hero-bg-upload" accept="image/*">
+                        <div class="hint">Use a wide, dark, high-resolution image (1920px+) for best results. <button type="button" class="btn btn-outline btn-sm" id="hero-bg-remove" style="margin-top:8px;">Remove image</button></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ABOUT -->
+            <section class="admin-panel" id="panel-about">
+                <div class="panel-head"><h2>About Section</h2><p>Company description and highlighted capabilities.</p></div>
+                <div class="card">
+                    <div class="field-row">
+                        <div class="field-group"><label>Eyebrow Tag</label><input type="text" data-field="about.tag"></div>
+                        <div class="field-group"><label>Title</label><input type="text" data-field="about.title"></div>
+                    </div>
+                    <div class="field-group"><label>Paragraph 1</label><textarea rows="3" data-field="about.paragraph1"></textarea></div>
+                    <div class="field-group"><label>Paragraph 2</label><textarea rows="3" data-field="about.paragraph2"></textarea></div>
+                    <div class="field-group">
+                        <label>Highlight Bullets</label>
+                        <div id="about-bullets-list"></div>
+                        <button type="button" class="btn btn-outline btn-sm" id="add-bullet">+ Add Bullet</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="field-row-3">
+                        <div class="field-group"><label>Visual Big Text</label><input type="text" data-field="about.visualBigNum"></div>
+                        <div class="field-group"><label>Visual Title</label><input type="text" data-field="about.visualTitle"></div>
+                        <div class="field-group"><label>Visual Description</label><input type="text" data-field="about.visualDesc"></div>
+                    </div>
+                    <div class="field-group">
+                        <label>Visual Background Image (optional)</label>
+                        <input type="file" id="about-visual-upload" accept="image/*">
+                        <div class="hint">Leave empty to keep the default navy pattern background. <button type="button" class="btn btn-outline btn-sm" id="about-visual-remove" style="margin-top:8px;">Remove image</button></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- STATS -->
+            <section class="admin-panel" id="panel-stats">
+                <div class="panel-head"><h2>Stats Strip</h2><p>The animated number counters shown below the hero.</p></div>
+                <div class="card">
+                    <div id="stats-list"></div>
+                    <button type="button" class="btn btn-outline btn-sm" id="add-stat">+ Add Stat</button>
+                </div>
+            </section>
+
+            <!-- SERVICES -->
+            <section class="admin-panel" id="panel-services">
+                <div class="panel-head"><h2>Services</h2><p>Cards shown in the services grid, filterable by category.</p></div>
+                <div class="card">
+                    <div id="services-list"></div>
+                    <button type="button" class="btn btn-outline btn-sm" id="add-service">+ Add Service</button>
+                </div>
+            </section>
+
+            <!-- INDUSTRIES -->
+            <section class="admin-panel" id="panel-industries">
+                <div class="panel-head"><h2>Industries</h2><p>Sectors served, shown as cards on the dark industries section.</p></div>
+                <div class="card">
+                    <div id="industries-list"></div>
+                    <button type="button" class="btn btn-outline btn-sm" id="add-industry">+ Add Industry</button>
+                </div>
+            </section>
+
+            <!-- PROJECTS -->
+            <section class="admin-panel" id="panel-projects">
+                <div class="panel-head"><h2>Projects / Portfolio</h2><p>Showcase real project work with photos, titles, and descriptions.</p></div>
+                <div class="card">
+                    <div class="field-row">
+                        <div class="field-group"><label>Section Tag</label><input type="text" data-field="projects.tag"></div>
+                        <div class="field-group"><label>Section Title</label><input type="text" data-field="projects.title"></div>
+                    </div>
+                    <div class="field-group"><label>Section Description</label><textarea rows="2" data-field="projects.description"></textarea></div>
+                </div>
+                <div class="card">
+                    <div id="projects-list"></div>
+                    <button type="button" class="btn btn-outline btn-sm" id="add-project">+ Add Project</button>
+                </div>
+            </section>
+
+            <!-- TECH -->
+            <section class="admin-panel" id="panel-tech">
+                <div class="panel-head"><h2>Technology</h2><p>Hardware and software badges shown in the technology section.</p></div>
+                <div class="card">
+                    <div class="field-group"><label>Hardware Column Title</label><input type="text" data-field="tech.hardware.title"></div>
+                    <div class="field-group">
+                        <label>Hardware Badges (one per line)</label>
+                        <textarea rows="5" id="tech-hardware-badges"></textarea>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="field-group"><label>Software Column Title</label><input type="text" data-field="tech.software.title"></div>
+                    <div class="field-group">
+                        <label>Software Badges (one per line)</label>
+                        <textarea rows="5" id="tech-software-badges"></textarea>
+                    </div>
+                </div>
+            </section>
+
+            <!-- QUOTE -->
+            <section class="admin-panel" id="panel-quote">
+                <div class="panel-head"><h2>Quote / CTA Section</h2><p>The contact-form call-to-action section.</p></div>
+                <div class="card">
+                    <div class="field-group"><label>Title</label><input type="text" data-field="cta.title"></div>
+                    <div class="field-group"><label>Description</label><textarea rows="3" data-field="cta.description"></textarea></div>
+                    <div class="field-group"><label>Form Note</label><textarea rows="2" data-field="cta.formNote"></textarea></div>
+                </div>
+            </section>
+
+            <!-- EMAIL NOTIFICATIONS -->
+            <section class="admin-panel" id="panel-notifications">
+                <div class="panel-head"><h2>Email Notifications</h2><p>Configure where quote requests are sent and how the email is formatted.</p></div>
+                <div class="card">
+                    <div class="field-group">
+                        <label>Enable Automatic Email Sending</label>
+                        <select id="emailjs-enabled" data-field="emailjs.enabled">
+                            <option value="false">Disabled (form shows a demo confirmation only)</option>
+                            <option value="true">Enabled (send via EmailJS)</option>
+                        </select>
+                    </div>
+                    <div class="field-group"><label>Recipient Email</label><input type="email" data-field="emailjs.recipientEmail" placeholder="you@maron-geo.com"></div>
+                    <div class="hint" style="margin-bottom:16px;">
+                        To finish setup, create a free account at <strong>emailjs.com</strong>, connect your email inbox
+                        as a "Service", create an email "Template", then paste the three IDs below. Ask your developer
+                        for help if needed — this only needs to be done once.
+                    </div>
+                    <div class="field-row-3">
+                        <div class="field-group"><label>EmailJS Service ID</label><input type="text" data-field="emailjs.serviceId" placeholder="service_xxxxxxx"></div>
+                        <div class="field-group"><label>EmailJS Template ID</label><input type="text" data-field="emailjs.templateId" placeholder="template_xxxxxxx"></div>
+                        <div class="field-group"><label>EmailJS Public Key</label><input type="text" data-field="emailjs.publicKey" placeholder="xxxxxxxxxxxxxxxx"></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="field-group"><label>Email Subject Format</label><input type="text" data-field="emailjs.subjectTemplate"></div>
+                    <div class="field-group">
+                        <label>Email Body Format</label>
+                        <textarea rows="8" data-field="emailjs.bodyTemplate"></textarea>
+                        <div class="hint">Available placeholders: {{fullname}}, {{company}}, {{email}}, {{phone}}, {{service}}, {{message}}. Make sure your EmailJS template uses the same placeholder names.</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FOOTER -->
+            <section class="admin-panel" id="panel-footer">
+                <div class="panel-head"><h2>Footer</h2><p>Bottom-of-page company summary and copyright line.</p></div>
+                <div class="card">
+                    <div class="field-group"><label>About Text</label><textarea rows="3" data-field="footer.about"></textarea></div>
+                    <div class="field-group"><label>Copyright Line</label><input type="text" data-field="footer.copyright"></div>
+                </div>
+            </section>
+
+            <!-- SETTINGS -->
+            <section class="admin-panel" id="panel-settings">
+                <div class="panel-head"><h2>Settings</h2><p>Backups and admin access.</p></div>
+
+                <div class="card">
+                    <h3 style="margin-bottom:10px;">Backup Content</h3>
+                    <p class="hint" style="margin-bottom:14px;">Content is saved in this browser only. Export a backup file after big edits, and before clearing browser data or switching computers.</p>
+                    <div style="display:flex; gap:12px; flex-wrap:wrap;">
+                        <button type="button" class="btn btn-navy btn-sm" id="export-btn">⬇ Export Content (JSON)</button>
+                        <button type="button" class="btn btn-outline btn-sm" id="import-btn">⬆ Import Content (JSON)</button>
+                        <input type="file" id="import-file" accept="application/json" style="display:none;">
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3 style="margin-bottom:14px; color:var(--navy-primary); font-size:1rem;">Change Admin Password</h3>
+                    <div class="field-row">
+                        <div class="field-group"><label>New Password</label><input type="password" id="new-password"></div>
+                        <div class="field-group"><label>Confirm New Password</label><input type="password" id="confirm-password"></div>
+                    </div>
+                    <button type="button" class="btn btn-navy btn-sm" id="change-password-btn">Update Password</button>
+                </div>
+
+                <div class="card danger-zone">
+                    <h3>Reset All Content</h3>
+                    <p>This restores every section to the original default text and removes all edits made in this browser. This cannot be undone.</p>
+                    <button type="button" class="btn btn-danger btn-sm" id="reset-btn">Reset to Defaults</button>
+                </div>
+            </section>
+
         </main>
     </div>
 
-    <script src="content-data.js"></script>
-    <script src="admin.js"></script>
+    <div class="save-bar">
+        <span class="save-status" id="save-status">Saved ✓</span>
+        <button class="btn btn-primary" id="save-btn" style="width:auto; padding:12px 32px;">Save Changes</button>
+    </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="content-data.js"></script>
+<script src="icons.js"></script>
+<script src="admin.js"></script>
 </body>
 </html>
