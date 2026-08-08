@@ -109,9 +109,7 @@
   /* ---------- HERO ---------- */
   .hero{
     position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;
-    background:
-      linear-gradient(180deg, rgba(8,21,33,.55) 0%, rgba(8,21,33,.55) 40%, rgba(8,21,33,.92) 100%),
-      url('https://images.unsplash.com/photo-1508450859948-4e04fabaa4ea?q=80&w=2000&auto=format&fit=crop') center/cover no-repeat;
+    background-color:var(--navy-950);
   }
   .hero-inner{padding:220px 0 0;}
   .hero-content{max-width:760px;}
@@ -389,11 +387,19 @@
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
 @media (max-width:640px){.form-row{grid-template-columns:1fr;}}
 
-/* Hero 3D drone model responsiveness */
-#hero-drone{ }
-@media (max-width:860px){
-  #hero-drone{ width:60vw !important; height:60vw !important; top:8% !important; right:-6% !important; opacity:.55; }
+/* Hero real-photo background with slow Ken Burns zoom/pan */
+.hero{position:relative;overflow:hidden;}
+.hero-bg-kenburns{
+  position:absolute; inset:-3%; z-index:0;
+  background-size:cover; background-position:center;
+  animation:heroKenBurns 22s ease-in-out infinite alternate;
+  will-change:transform;
 }
-@media (max-width:560px){
-  #hero-drone{ opacity:.35; }
+@keyframes heroKenBurns{
+  0%{ transform:scale(1) translate(0,0); }
+  100%{ transform:scale(1.12) translate(-1.5%, -1%); }
+}
+.hero-inner{position:relative; z-index:1;}
+@media (prefers-reduced-motion: reduce){
+  .hero-bg-kenburns{ animation:none; }
 }

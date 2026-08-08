@@ -55,7 +55,8 @@
 </div>
 
 <!-- HERO -->
-<section class="hero" id="home" style="padding:0;background:linear-gradient(180deg, rgba(8,21,33,.55) 0%, rgba(8,21,33,.55) 40%, rgba(8,21,33,.92) 100%), url('https://images.unsplash.com/photo-1508450859948-4e04fabaa4ea?q=80&w=2000&auto=format&fit=crop') center/cover no-repeat;">
+<section class="hero" id="home" style="padding:0;">
+  <div class="hero-bg-kenburns" style="background-image:linear-gradient(180deg, rgba(8,21,33,.55) 0%, rgba(8,21,33,.55) 40%, rgba(8,21,33,.92) 100%), url('assets/hero-drone-survey.jpg');"></div>
   <div class="wrap hero-inner">
     <div class="hero-content reveal in">
       <div class="eyebrow" style="color:#F4915C">Geomatics &middot; Reality Capture</div>
@@ -66,20 +67,6 @@
         <a href="#quote" class="btn btn-ghost" data-hero-cta-secondary>Request a Quote</a>
       </div>
     </div>
-    <model-viewer
-      id="hero-drone"
-      src="https://static.poly.pizza/4f3ac8a2-0169-4e15-aa4a-5c3d9c8b3647.glb"
-      alt="3D drone model"
-      auto-rotate
-      auto-rotate-delay="0"
-      rotation-per-second="18deg"
-      camera-controls
-      disable-zoom
-      interaction-prompt="none"
-      shadow-intensity="0.7"
-      camera-orbit="25deg 70deg 105%"
-      style="position:absolute; top:14%; right:2%; width:min(46vw,520px); height:min(46vw,520px); --poster-color:transparent; pointer-events:auto; z-index:2;">
-    </model-viewer>
     <div class="wrap" style="padding:0;margin:0 -32px;">
       <div class="coord-bar wrap">
         <span><span class="dot">●</span> <span data-hud-lat>30.0444° N</span></span>
@@ -237,7 +224,6 @@
     </div>
     <div class="footer-bottom">
       <span data-footer-copyright>© 2026 MARON. All rights reserved.</span>
-      <span style="font-size:12px;opacity:.6;">Drone model by Poly by Google — <a href="https://creativecommons.org/licenses/by/3.0/" style="color:inherit;">CC-BY 3.0</a></span>
     </div>
   </div>
 </footer>
@@ -246,7 +232,6 @@
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
 </button>
 
-<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
 <script src="content-data.js"></script>
