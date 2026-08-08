@@ -1,250 +1,516 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MARON | Advanced Surveying &amp; Digital Engineering Solutions</title>
-<meta name="description" content="MARON delivers land survey, 3D laser scanning, mobile mapping, drone survey, GIS and BIM services across Egypt and Saudi Arabia.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="site.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+  <title>MARON Geomatics — Engineering Data, Captured in Reality</title>
+
+  <meta
+    name="description"
+    content="MARON Geomatics — surveying, UAV mapping, LiDAR, 3D scanning, GIS and engineering data."
+  >
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="stylesheet" href="style.css">
+
+  <script>
+    window.MARON_ADMIN_KEY = "maron_site_content_v1";
+  </script>
 </head>
+
 <body>
 
-<!-- ICON SPRITE -->
-<svg style="display:none">
-  <symbol id="ic-land" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 20l6-13 4 8 3-5 5 10H3z"/><circle cx="9" cy="7" r="1.3"/></symbol>
-  <symbol id="ic-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12l6 6L20 6"/></symbol>
-  <symbol id="ic-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
-  <symbol id="ic-gnss" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2v6M12 2l-3 3M12 2l3 3"/><circle cx="12" cy="15" r="6"/><circle cx="12" cy="15" r="1.4"/></symbol>
-  <symbol id="ic-total" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 20h12M9 20V10l3-6 3 6v10"/></symbol>
-</svg>
+<div id="app">
 
-<!-- HEADER -->
-<header id="header">
-  <div class="wrap navbar">
-    <a href="#" class="logo">
-      <span class="logo-mark"><svg viewBox="0 0 30 30" fill="none" stroke="#E85D25" stroke-width="1.8"><circle cx="15" cy="15" r="12"/><path d="M15 3v24M3 15h24"/><circle cx="15" cy="15" r="2.2" fill="#E85D25" stroke="none"/></svg></span>
-      <span data-brand-name>MARON</span>
+  <canvas id="scene"></canvas>
+
+  <div class="grain"></div>
+
+  <!-- ================= HEADER ================= -->
+
+  <header class="topbar">
+
+    <a class="brand" href="#home" data-target="0">
+
+      <span class="mark">M</span>
+
+      <span>
+        <strong>MARON</strong>
+        <small>GEOMATICS</small>
+      </span>
+
     </a>
-    <nav class="nav-links">
-      <div class="nav-item"><a href="#home">Home</a></div>
-      <div class="nav-item"><a href="list.html?type=services">Services</a></div>
-      <div class="nav-item"><a href="list.html?type=industries">Industries</a></div>
-      <div class="nav-item"><a href="list.html?type=projects">Projects</a></div>
-      <div class="nav-item"><a href="#equipment">Equipment</a></div>
-      <div class="nav-item"><a href="#contact">Contact</a></div>
-    </nav>
-    <div class="nav-cta">
-      <a href="#quote" class="btn btn-ghost">Get a Quote</a>
-      <button class="burger" id="burgerBtn" aria-label="Open menu">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
-      </button>
-    </div>
-  </div>
-</header>
 
-<!-- MOBILE PANEL -->
-<div class="mobile-panel" id="mobilePanel">
-  <div class="mp-top">
-    <span class="logo" style="color:#fff">MARON</span>
-    <button class="mp-close" id="mpClose"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <nav class="nav">
+
+      <button class="nav-item active" data-target="0">
+        Home
+      </button>
+
+      <button class="nav-item" data-target="1">
+        Capabilities
+      </button>
+
+      <button class="nav-item" data-target="2">
+        UAV
+      </button>
+
+      <button class="nav-item" data-target="3">
+        LiDAR
+      </button>
+
+      <button class="nav-item" data-target="4">
+        Projects
+      </button>
+
+      <button class="nav-item" data-target="5">
+        Quote
+      </button>
+
+    </nav>
+
+    <button class="menu-btn">
+      MENU
+    </button>
+
+  </header>
+
+  <!-- ================= MAIN ================= -->
+
+  <main id="viewport">
+
+    <!-- HOME -->
+
+    <section class="panel active" data-index="0">
+
+      <div class="copy">
+
+        <p class="eyebrow">
+          ENGINEERING DATA • GEOMATICS • REALITY CAPTURE
+        </p>
+
+        <h1>
+          Capture reality.<br>
+          <em>Build with confidence.</em>
+        </h1>
+
+        <p class="lead">
+          Precision surveying and geospatial solutions for infrastructure,
+          construction and engineering projects.
+        </p>
+
+        <div class="actions">
+
+          <button class="primary" data-target="1">
+            Explore capabilities
+            <span>↗</span>
+          </button>
+
+          <button class="ghost" data-target="5">
+            Request a quote
+          </button>
+
+        </div>
+
+      </div>
+
+      <div class="scene-label">
+        <span>01</span>
+        REALITY CAPTURE
+      </div>
+
+    </section>
+
+    <!-- CAPABILITIES -->
+
+    <section class="panel" data-index="1">
+
+      <div class="copy">
+
+        <p class="eyebrow">
+          01 / CAPABILITIES
+        </p>
+
+        <h2>
+          From field measurements<br>
+          <em>to engineering intelligence.</em>
+        </h2>
+
+        <p class="lead">
+          One workflow across surveying, UAV mapping,
+          3D reality capture, GIS and engineering deliverables.
+        </p>
+
+        <div class="cap-grid">
+
+          <article>
+
+            <b>01</b>
+
+            <strong>
+              Engineering Surveying
+            </strong>
+
+            <span>
+              GNSS • Total Station • Setting Out • As-Built
+            </span>
+
+          </article>
+
+          <article>
+
+            <b>02</b>
+
+            <strong>
+              UAV & Photogrammetry
+            </strong>
+
+            <span>
+              Mapping • Orthomosaics • Dense Point Clouds
+            </span>
+
+          </article>
+
+          <article>
+
+            <b>03</b>
+
+            <strong>
+              LiDAR & 3D Scanning
+            </strong>
+
+            <span>
+              Reality Capture • Point Clouds • 3D Models
+            </span>
+
+          </article>
+
+          <article>
+
+            <b>04</b>
+
+            <strong>
+              GIS & Volumes
+            </strong>
+
+            <span>
+              Spatial Data • Surfaces • Cut & Fill
+            </span>
+
+          </article>
+
+        </div>
+
+      </div>
+
+      <div class="scene-label">
+        <span>02</span>
+        CAPABILITIES
+      </div>
+
+    </section>
+
+    <!-- UAV -->
+
+    <section class="panel" data-index="2">
+
+      <div class="copy split">
+
+        <div>
+
+          <p class="eyebrow">
+            02 / UAV & PHOTOGRAMMETRY
+          </p>
+
+          <h2>
+            See the site<br>
+            <em>from above.</em>
+          </h2>
+
+          <p class="lead">
+            Aerial imagery becomes measurable engineering data —
+            from coverage and orthomosaics to dense 3D point clouds.
+          </p>
+
+          <button class="primary" data-target="5">
+            Plan a UAV survey
+            <span>↗</span>
+          </button>
+
+        </div>
+
+        <div class="metric">
+
+          <span>
+            OUTPUT
+          </span>
+
+          <strong>
+            2D → 3D
+          </strong>
+
+          <small>
+            Imagery → Point Cloud → Surface
+          </small>
+
+        </div>
+
+      </div>
+
+      <div class="scene-label">
+        <span>03</span>
+        UAV / POINT CLOUD
+      </div>
+
+    </section>
+
+    <!-- LIDAR -->
+
+    <section class="panel" data-index="3">
+
+      <div class="copy split">
+
+        <div>
+
+          <p class="eyebrow">
+            03 / LiDAR & 3D SCANNING
+          </p>
+
+          <h2>
+            Turn space<br>
+            <em>into data.</em>
+          </h2>
+
+          <p class="lead">
+            Laser scanning captures complex interiors and structures
+            as high-density spatial data ready for measurement,
+            documentation and modeling.
+          </p>
+
+          <button class="primary" data-target="5">
+            Discuss a scan
+            <span>↗</span>
+          </button>
+
+        </div>
+
+        <div class="metric">
+
+          <span>
+            WORKFLOW
+          </span>
+
+          <strong>
+            SCAN → CLOUD
+          </strong>
+
+          <small>
+            Reality → Point Cloud → Deliverable
+          </small>
+
+        </div>
+
+      </div>
+
+      <div class="scene-label">
+        <span>04</span>
+        LiDAR / REALITY CAPTURE
+      </div>
+
+    </section>
+
+    <!-- PROJECTS -->
+
+    <section class="panel" data-index="4">
+
+      <div class="copy">
+
+        <p class="eyebrow">
+          04 / ENGINEERING PROJECTS
+        </p>
+
+        <h2>
+          Built for the<br>
+          <em>real world.</em>
+        </h2>
+
+        <p class="lead">
+          Our workflows are designed around infrastructure
+          and construction: roads, corridors, earthworks,
+          structures and complex sites.
+        </p>
+
+        <div class="project-strip">
+
+          <div>
+
+            <span>
+              ROADS
+            </span>
+
+            <b>
+              Corridor surveys & surfaces
+            </b>
+
+          </div>
+
+          <div>
+
+            <span>
+              CONSTRUCTION
+            </span>
+
+            <b>
+              Setting out & as-built
+            </b>
+
+          </div>
+
+          <div>
+
+            <span>
+              EARTHWORKS
+            </span>
+
+            <b>
+              Volumes & cut/fill
+            </b>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="scene-label">
+        <span>05</span>
+        ENGINEERING DATA
+      </div>
+
+    </section>
+
+    <!-- QUOTE -->
+
+    <section class="panel quote-panel" data-index="5">
+
+      <div class="copy">
+
+        <p class="eyebrow">
+          05 / REQUEST A QUOTE
+        </p>
+
+        <h2>
+          Have a project?<br>
+          <em>Let's map it.</em>
+        </h2>
+
+        <p class="lead">
+          Tell us what you need to capture, where the project is,
+          and what deliverable you need.
+        </p>
+
+        <form id="quoteForm">
+
+          <div class="form-row">
+
+            <input
+              required
+              name="name"
+              placeholder="Your name"
+            >
+
+            <input
+              required
+              type="email"
+              name="email"
+              placeholder="Email"
+            >
+
+          </div>
+
+          <div class="form-row">
+
+            <input
+              name="company"
+              placeholder="Company"
+            >
+
+            <select name="service">
+
+              <option value="">
+                Service
+              </option>
+
+              <option>
+                Engineering Surveying
+              </option>
+
+              <option>
+                UAV & Photogrammetry
+              </option>
+
+              <option>
+                LiDAR & 3D Scanning
+              </option>
+
+              <option>
+                GIS & Volumes
+              </option>
+
+            </select>
+
+          </div>
+
+          <textarea
+            name="message"
+            rows="3"
+            placeholder="Tell us about the project"
+          ></textarea>
+
+          <button
+            class="primary"
+            type="submit"
+          >
+            Send project brief
+            <span>↗</span>
+          </button>
+
+          <p class="form-note">
+            Connect this form to your email/CRM endpoint before launch.
+          </p>
+
+        </form>
+
+      </div>
+
+      <div class="scene-label">
+        <span>06</span>
+        LET'S WORK
+      </div>
+
+    </section>
+
+  </main>
+
+  <div class="progress">
+    <span id="progressFill"></span>
   </div>
-  <a href="#home">Home</a><a href="list.html?type=services">Services</a><a href="list.html?type=projects">Projects</a>
-  <a href="#equipment">Equipment</a><a href="list.html?type=industries">Industries</a><a href="#contact">Contact</a>
+
+  <div class="hint">
+    DRAG / SCROLL / USE ARROWS
+  </div>
+
 </div>
 
-<!-- HERO -->
-<section class="hero" id="home" style="padding:0;">
-  <div class="hero-bg-kenburns" style="background-image:linear-gradient(180deg, rgba(8,21,33,.55) 0%, rgba(8,21,33,.55) 40%, rgba(8,21,33,.92) 100%), url('assets/hero-drone-survey.jpg');"></div>
-  <div class="wrap hero-inner">
-    <div class="hero-content reveal in">
-      <div class="eyebrow" style="color:#F4915C">Geomatics &middot; Reality Capture</div>
-      <h1 data-hero-title>Engineering Data for Better Decisions</h1>
-      <p class="sub" data-hero-desc>Delivering integrated geomatics, surveying, and digital reality capture solutions across Egypt and the Middle East.</p>
-      <div class="hero-actions">
-        <a href="#services-3d" class="btn btn-primary" data-hero-cta-primary>Explore Services <svg width="16" height="16" viewBox="0 0 24 24"><use href="#ic-arrow"/></svg></a>
-        <a href="#quote" class="btn btn-ghost" data-hero-cta-secondary>Request a Quote</a>
-      </div>
-    </div>
-    <div class="wrap" style="padding:0;margin:0 -32px;">
-      <div class="coord-bar wrap">
-        <span><span class="dot">●</span> <span data-hud-lat>30.0444° N</span></span>
-        <span>ACCURACY: <span data-hud-accuracy>±0.002 m</span></span>
-        <span data-hero-badge>Integrated Geospatial Intelligence</span>
-      </div>
-    </div>
-  </div>
-</section>
+<script type="module" src="script.js"></script>
 
-<!-- ABOUT (condensed) -->
-<section class="about" id="about">
-  <div class="wrap about-grid">
-    <div class="about-media reveal">
-      <img src="https://images.unsplash.com/photo-1581093458791-9d42e3c5d7f5?q=80&w=1200&auto=format&fit=crop" alt="Surveyor operating a total station on site">
-    </div>
-    <div class="about-copy reveal">
-      <div class="eyebrow">About MARON</div>
-      <h2 data-about-title style="font-size:clamp(26px,3vw,36px);margin-bottom:22px;">Precision Geomatics &amp; Engineering Excellence</h2>
-      <p data-about-p1>MARON is a leading geomatics and surveying company providing integrated geospatial solutions.</p>
-      <ul class="about-list" data-about-list></ul>
-    </div>
-  </div>
-</section>
-
-<!-- STATS -->
-<section class="stats">
-  <div class="wrap stats-grid" data-stats-grid></div>
-</section>
-
-<!-- SERVICES — 3D CAROUSEL -->
-<section class="services-section" id="services-3d">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <h2>Our Core Services</h2>
-      <p>Drag to explore — tap a shape or its caption to see the full service page.</p>
-    </div>
-    <div class="services-3d-wrap reveal">
-      <div class="services-3d-canvas" id="services-3d-canvas"></div>
-      <div class="services-3d-hint">Drag to rotate</div>
-      <div class="services-3d-caption" id="services-3d-caption">
-        <h3 data-cap-title></h3>
-        <p data-cap-desc></p>
-      </div>
-      <div class="grid-4 services-3d-fallback" id="services-3d-fallback"></div>
-    </div>
-    <div class="services-3d-nav" id="services-3d-dots"></div>
-    <div class="section-viewall"><a href="list.html?type=services" class="btn btn-dark">View All Services</a></div>
-  </div>
-</section>
-
-<!-- INDUSTRIES (condensed) -->
-<section id="industries">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <h2>Industries We Serve</h2>
-      <p>Purpose-built survey and geospatial workflows for the sectors that shape the region's growth.</p>
-    </div>
-    <div class="ind-grid" data-industries-grid style="grid-template-columns:repeat(3,1fr);"></div>
-    <div class="section-viewall"><a href="list.html?type=industries" class="btn btn-dark">View All Industries</a></div>
-  </div>
-</section>
-
-<!-- PROJECTS (condensed) -->
-<section class="services-section" id="projects">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <h2>Featured Projects</h2>
-      <p>A selection of recent survey and digital engineering work across the region.</p>
-    </div>
-    <div class="grid-3" data-projects-grid></div>
-    <div class="section-viewall"><a href="list.html?type=projects" class="btn btn-dark">View All Projects</a></div>
-  </div>
-</section>
-
-<!-- EQUIPMENT (condensed) -->
-<section class="equip-section" id="equipment">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <h2>Equipment</h2>
-      <p>Survey-grade instruments and processing software behind every deliverable.</p>
-    </div>
-    <div class="grid-4" data-equipment-grid></div>
-  </div>
-</section>
-
-<!-- CLIENTS -->
-<section class="clients-strip">
-  <div class="wrap">
-    <div class="eyebrow reveal">Trusted By</div>
-    <div class="clients-row reveal" data-clients-row></div>
-  </div>
-</section>
-
-<!-- TESTIMONIALS (condensed) -->
-<section>
-  <div class="wrap">
-    <div class="section-head reveal">
-      <h2>What Clients Say</h2>
-    </div>
-    <div class="grid-3" data-testimonials-grid></div>
-  </div>
-</section>
-
-<!-- QUOTE / CONTACT -->
-<section class="quote-section" id="quote">
-  <div class="wrap" style="max-width:640px;">
-    <div class="section-head reveal" style="display:block;">
-      <h2 data-cta-title>Get a Tailored Project Quote</h2>
-      <p>Tell us about your project and we'll get back to you within 48 hours.</p>
-    </div>
-    <div class="quote-form-card reveal">
-      <form id="quote-form" novalidate>
-        <div class="form-row">
-          <div class="form-group"><label for="fullname">Full Name</label><input class="form-control" type="text" id="fullname" name="fullname" required></div>
-          <div class="form-group"><label for="company">Company</label><input class="form-control" type="text" id="company" name="company"></div>
-        </div>
-        <div class="form-row">
-          <div class="form-group"><label for="email">Email</label><input class="form-control" type="email" id="email" name="email" required></div>
-          <div class="form-group"><label for="phone">Phone</label><input class="form-control" type="tel" id="phone" name="phone"></div>
-        </div>
-        <div class="form-group"><label for="message">Project Details</label><textarea class="form-control" id="message" name="message" rows="4" required></textarea></div>
-        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Send Request</button>
-        <div class="form-success" id="form-success">Thanks — your request has been received.</div>
-        <div class="form-error" id="form-error">Something went wrong. Please try again or contact us directly.</div>
-      </form>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer id="contact">
-  <div class="wrap">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <span class="logo"><span class="logo-mark"><svg viewBox="0 0 30 30" fill="none" stroke="#E85D25" stroke-width="1.8"><circle cx="15" cy="15" r="12"/><path d="M15 3v24M3 15h24"/><circle cx="15" cy="15" r="2.2" fill="#E85D25" stroke="none"/></svg></span>MARON</span>
-        <p data-footer-about>MARON delivers integrated geomatics and surveying solutions.</p>
-      </div>
-      <div class="footer-col">
-        <h4>Quick Links</h4>
-        <ul><li><a href="list.html?type=services">Services</a></li><li><a href="list.html?type=projects">Projects</a></li><li><a href="list.html?type=industries">Industries</a></li></ul>
-      </div>
-      <div class="footer-col">
-        <h4>Company</h4>
-        <ul><li><a href="#about">About Us</a></li><li><a href="admin.html">Admin</a></li></ul>
-      </div>
-      <div class="footer-col">
-        <h4>Contact</h4>
-        <ul class="footer-contact">
-          <li data-footer-address>Cairo, Egypt</li>
-          <li data-footer-phone>+20 100 000 0000</li>
-          <li data-footer-email>info@maron-geo.com</li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span data-footer-copyright>© 2026 MARON. All rights reserved.</span>
-    </div>
-  </div>
-</footer>
-
-<button class="totop" id="totop" aria-label="Back to top">
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-</button>
-
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
-<script src="content-data.js"></script>
-<script src="icons.js"></script>
-<script src="services-3d.js"></script>
-<script src="app-v2.js"></script>
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const c = maronGetContent();
-    if (c.emailjs.enabled && c.emailjs.publicKey && window.emailjs) {
-      window.emailjs.init({ publicKey: c.emailjs.publicKey });
-    }
-  });
-</script>
 </body>
 </html>
