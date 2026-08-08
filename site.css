@@ -388,3 +388,12 @@
 .form-control:focus{outline:none;border-color:var(--orange-500);background:#fff;box-shadow:0 0 0 3px rgba(232,93,37,0.15);}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
 @media (max-width:640px){.form-row{grid-template-columns:1fr;}}
+
+/* Hero 3D drone model responsiveness */
+#hero-drone{ }
+@media (max-width:860px){
+  #hero-drone{ width:60vw !important; height:60vw !important; top:8% !important; right:-6% !important; opacity:.55; }
+}
+@media (max-width:560px){
+  #hero-drone{ opacity:.35; }
+}
