@@ -17,7 +17,7 @@ const MARON_DEFAULT_PASSWORD = "Maron@2026";
 const MARON_DEFAULT_CONTENT = {
   brand: {
     companyName: "MARON",
-    tagline: "Geomatics • Reality Capture",
+    tagline: "Geomatics • Surveying • Reality Capture",
     logoDataUrl: "", // if set (base64), overrides the default SVG emblem
     phone: "+20 100 000 0000",
     email: "info@maron-geo.com",
@@ -133,12 +133,12 @@ const MARON_DEFAULT_CONTENT = {
     }
   ],
   industries: [
-    { title: "Roads & Highways", desc: "Alignment surveys, corridor mapping, pavement inspection, and setting out.", imageDataUrl: "" },
-    { title: "Infrastructure & Rail", desc: "High-density point clouds, deformation monitoring, and utility mapping.", imageDataUrl: "" },
-    { title: "Solar & Renewable Energy", desc: "Topographic site characterization, panel layout setting out, and slope analysis.", imageDataUrl: "" },
-    { title: "Mining & Quarries", desc: "Drone-based volumetric stockpiles, open-pit face mapping, and pit expansion monitoring.", imageDataUrl: "" },
-    { title: "Real Estate & Development", desc: "Cadastral boundary confirmation, architectural BIM scanning, and site elevation models.", imageDataUrl: "" },
-    { title: "Oil & Gas & Industrial", desc: "As-built plant scanning, pipe rack modeling, and offshore/onshore facility mapping.", imageDataUrl: "" }
+    { title: "Roads & Highways", desc: "Alignment surveys, corridor mapping, pavement inspection, and setting out.", imageDataUrl: "https://images.unsplash.com/photo-1518178327115-dec6604c80a6?q=80&w=900&auto=format&fit=crop" },
+    { title: "Infrastructure & Rail", desc: "High-density point clouds, deformation monitoring, and utility mapping.", imageDataUrl: "https://images.unsplash.com/photo-1758130247050-18239c457974?q=80&w=900&auto=format&fit=crop" },
+    { title: "Solar & Renewable Energy", desc: "Topographic site characterization, panel layout setting out, and slope analysis.", imageDataUrl: "https://images.unsplash.com/photo-1677273459827-e212995b079d?q=80&w=900&auto=format&fit=crop" },
+    { title: "Mining & Quarries", desc: "Drone-based volumetric stockpiles, open-pit face mapping, and pit expansion monitoring.", imageDataUrl: "https://images.unsplash.com/photo-1697207466001-6faa9de94d4e?q=80&w=900&auto=format&fit=crop" },
+    { title: "Real Estate & Development", desc: "Cadastral boundary confirmation, architectural BIM scanning, and site elevation models.", imageDataUrl: "https://images.unsplash.com/photo-1767893029384-e340a44073b3?q=80&w=900&auto=format&fit=crop" },
+    { title: "Oil & Gas & Industrial", desc: "As-built plant scanning, pipe rack modeling, and offshore/onshore facility mapping.", imageDataUrl: "https://images.unsplash.com/photo-1516937941344-00b4e0337589?q=80&w=900&auto=format&fit=crop" }
   ],
   projects: {
     tag: "Our Work",
